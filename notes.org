@@ -1,0 +1,21 @@
+* DONE A - Disjoint Set Union                                           :dsu:
+Preliminary implementation. +Wrong Answer for sample input.+ I assumed the nodes are numbered from 1, but they are from 0. My answer is correct after shifting the input node numbers by 1.
+
+* DONE B - Fenwick Tree                                        :fenwick_tree:
+- array with real time prefix summation fails(TLE) all random tests.
+- fenwick tree implementation succeeds
+
+* TODO C - Floor Sum                                      :modulo_arithmetic:
+Given N, M, A, B find SUM{floor((Ai+B)/M) | 0<=i<N}. N is bounded by 10^9 and since the number of test cases is 10^5, there is not option to brute force it in 5 seconds.
+
+So I have to find the sum in O(log n) or something.
+floor(x) = x - frac(x), so the above sum becomes SUM{(Ai+B)/M | 0 <=i<N} - SUM{frac(Ai+B)/M|0<=i<N}. First part can be directly calculated as (A*N*(N-1)/2 + B*N)/M. Now we are left with SUM { frac (Ai+B)/M | 0 <= i < N}.
+Each fraction in that sum is x/M where x < M. If we can find a pattern to the numerators, x_i = (A*i + B) mod M, then the sum, (SUM {x_i, 0 <= i < N}) / M, can easily be calculated. Else we will need to still iterate N times.
+Since we don't want any rounding errors caused by division, we might as well combine these two steps before dividing by M, (A*N*(N-1))/2 + B*N - SUM {x_i|0<=i<N}.
+* TODO D - Max Flow                                              :graph:max_flow:
+* TODO E - Min Cost Flow                                     :graph:min_flow:
+* TODO F - Convolution
+given $\{a_{i}|0\leq i<N\}, \{b_{i}|0\leq i<M\}$, calculate $c_{i}$, where $c_{i} = \sum_{0}^{i} a_{j}*b_{i-j}mod M$
+
+Constraints:
+$1\leq N,M\leq524288$
